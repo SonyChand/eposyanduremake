@@ -8,7 +8,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak WHERE kode_posyandu = '$spesifik_kode' ORDER BY nik DESC"
+            FROM dataanak WHERE kode_posyandu = '$spesifik_kode' ORDER BY nik DESC"
         );
 
         return $query->result_array();
@@ -18,7 +18,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak ORDER BY nik DESC"
+            FROM dataanak ORDER BY nik DESC"
         );
 
         return $query->result_array();
@@ -28,7 +28,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak WHERE kode_posyandu = '$kode_posyandu'"
+            FROM dataanak WHERE kode_posyandu = '$kode_posyandu'"
         );
 
         return $query->result_array();
@@ -38,7 +38,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak WHERE kode_posyandu = '$spesifik_kode'"
+            FROM dataanak WHERE kode_posyandu = '$spesifik_kode'"
         );
 
         return $query->num_rows();
@@ -48,7 +48,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak"
+            FROM dataanak"
         );
 
         return $query->num_rows();
@@ -58,7 +58,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak"
+            FROM dataanak"
         );
 
         return $query->num_rows();
@@ -68,7 +68,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE kode_posyandu = '$kode_posyandu'"
         );
 
@@ -79,7 +79,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE nik_wali = $nik"
         );
 
@@ -90,7 +90,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE nik = $nik"
         );
 
@@ -101,7 +101,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT kode_posyandu 
-            FROM dataAnak WHERE golongan_darah = 'A' AND kode_posyandu = '$spesifik_kode'"
+            FROM dataanak WHERE golongan_darah = 'A' AND kode_posyandu = '$spesifik_kode'"
         );
 
         return $query->num_rows();
@@ -111,7 +111,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak WHERE golongan_darah = 'B' AND kode_posyandu = '$spesifik_kode'"
+            FROM dataanak WHERE golongan_darah = 'B' AND kode_posyandu = '$spesifik_kode'"
         );
 
         return $query->num_rows();
@@ -121,7 +121,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak WHERE golongan_darah = 'AB' AND kode_posyandu = '$spesifik_kode'"
+            FROM dataanak WHERE golongan_darah = 'AB' AND kode_posyandu = '$spesifik_kode'"
         );
 
         return $query->num_rows();
@@ -131,7 +131,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak WHERE golongan_darah = 'O' AND kode_posyandu = '$spesifik_kode'"
+            FROM dataanak WHERE golongan_darah = 'O' AND kode_posyandu = '$spesifik_kode'"
         );
 
         return $query->num_rows();
@@ -141,7 +141,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE nik = $nik"
         );
 
@@ -152,7 +152,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE nik_wali = $nik"
         );
 
@@ -163,7 +163,7 @@ class DataAnak extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE nik_wali = $nik"
         );
 
@@ -186,7 +186,7 @@ class DataAnak extends CI_Model
         $anak_ke = $this->input->post('anak_ke');
         $nik_wali = $this->input->post('nik_wali');
         $status = $this->input->post('status');
-        $nama_wali = $data['dataIbu'][0]['nama'];
+        $nama_wali = $data['dataibu'][0]['nama'];
         $data_anak = [
             'nik' => $nik,
             'kode_posyandu' => $kode_posyandu,
@@ -204,12 +204,12 @@ class DataAnak extends CI_Model
             'nik_wali' => $nik_wali,
             'nama_wali' => $nama_wali
         ];
-        $this->db->insert('dataAnak', $data_anak);
+        $this->db->insert('dataanak', $data_anak);
     }
 
     public function hapusData($nik)
     {
-        $this->db->delete('dataAnak', ['nik' => $nik]);
+        $this->db->delete('dataanak', ['nik' => $nik]);
     }
 
     public function ubahData($nik, $data)
@@ -224,7 +224,7 @@ class DataAnak extends CI_Model
         $alamat = $this->input->post('alamat');
         $anak_ke = $this->input->post('anak_ke');
         $nik_wali = $this->input->post('nik_wali');
-        $nama_wali = $data['dataIbu'][0]['nama'];
+        $nama_wali = $data['dataibu'][0]['nama'];
         $data_anak = [
             'nik' => $nik,
             'nama' => $nama,
@@ -240,6 +240,6 @@ class DataAnak extends CI_Model
             'nama_wali' => $nama_wali
         ];
         $this->db->where('nik', $nik);
-        $this->db->update('dataAnak', $data_anak);
+        $this->db->update('dataanak', $data_anak);
     }
 }

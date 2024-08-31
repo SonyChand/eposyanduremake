@@ -193,10 +193,10 @@ class Petugas extends CI_Controller
         $data['user'] = $this->db->get_where('dataakun', ['nik' => $this->session->userdata('nik')])->row_array();
         $spesifik_kode = $getKode['kode_posyandu'];
         $data['title'] = 'Data Perkembangan Anak';
-        // $x = $this->DataKMS->printAVGKMS();
-        // $data['avgKMS'] = json_encode($x);
-        // $x = $this->DataImunisasi->countJumlahKMS();
-        // $data['jenisKMS'] = json_encode($x);
+        $x = $this->DataKMS->printAVGKMS();
+        $data['avgKMS'] = json_encode($x);
+        $x = $this->DataImunisasi->countJumlahKMS();
+        $data['jenisKMS'] = json_encode($x);
         $data['countbbsk'] = $this->DataKMS->countbbsk($spesifik_kode);
         $data['countbbk'] = $this->DataKMS->countbbk($spesifik_kode);
         $data['countbbn'] = $this->DataKMS->countbbn($spesifik_kode);
@@ -215,8 +215,8 @@ class Petugas extends CI_Controller
 
     public function TambahDataKMS()
     {
-        $id_kms = $this->input->post('id_kms');
-        $getUser = $this->db->get_where('dataanak', ['id_kms' => $id_kms])->row_array();
+        $nik = $this->input->post('id_kms');
+        $getUser = $this->db->get_where('dataanak', ['nik' => $nik])->row_array();
         $getJk = $getUser['jk'];
         if ($getJk == 'Laki-Laki') {
             $jk = 'L';
@@ -225,9 +225,10 @@ class Petugas extends CI_Controller
         }
 
         $tanggal_lahir = $getUser['tanggal_lahir'];
+        $idKms = $getUser['id_kms'];
 
 
-        $this->DataKMS->saveData($jk, $tanggal_lahir);
+        $this->DataKMS->saveData($jk, $tanggal_lahir, $nik, $idKms);
         $this->session->set_flashdata('petugas', 'Success as a petugas.');
         redirect('petugas/DataKMS');
     }

@@ -235,9 +235,8 @@ class DataKMS extends CI_Model
         return $query->num_rows();
     }
 
-    public function saveData($jk, $tanggal_lahir)
+    public function saveData($jk, $tanggal_lahir, $nik, $idKms)
     {
-        $id_kms = $this->input->post('id_kms');
         $kode_posyandu = $this->input->post('kode_posyandu');
         $jk    = $jk;
         $tanggal_periksa    = $this->input->post('tanggal_periksa');
@@ -2345,10 +2344,11 @@ class DataKMS extends CI_Model
             $status_gizi = 'Tidak Masuk Kategori';
         }
 
-        $beratBadanOptimal = $this->gullud->predict($tinggi_badan, $bb1, date('n', strtotime($tanggal_periksa)));
+        $beratBadan = $this->gullud->predict($bb1, $umur);
 
         $data_KMS = [
-            'id_kms' => $id_kms,
+            'nik_anak' => $nik,
+            'id_kms' => $idKms,
             'kode_posyandu' => $kode_posyandu,
             'jk' => $jk,
             'umur' => $umur,
@@ -2358,8 +2358,8 @@ class DataKMS extends CI_Model
             'tinggi_badan' => $tinggi_badan,
             'status_gizi' => $status_gizi,
             'berat_badan' =>  number_format($berat_badan, 2),
-            'tb_optimal' =>  round($beratBadanOptimal['tinggi_badan_prediksi']),
-            'bb_optimal' =>  round($beratBadanOptimal['berat_badan_prediksi'])
+            'bb_optimal' =>  $beratBadan['optimal'],
+            'bb_prediksi' =>  $beratBadan['prediksi'],
         ];
         $this->db->insert('dataKMS', $data_KMS);
     }

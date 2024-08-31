@@ -8,7 +8,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun"
+            FROM dataakun"
         );
 
         return $query->result_array();
@@ -18,7 +18,7 @@ class DataAkun extends CI_Model
     {
 
         $this->db->select('image');
-        $this->db->from('dataAkun');
+        $this->db->from('dataakun');
         $this->db->where('id_akun', $id_akun);
         $query = $this->db->get();
 
@@ -39,7 +39,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun WHERE kode_posyandu = '$kode_posyandu'"
+            FROM dataakun WHERE kode_posyandu = '$kode_posyandu'"
         );
         return $query->result_array();
     }
@@ -48,7 +48,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun WHERE role = 1"
+            FROM dataakun WHERE role = 1"
         );
 
         return $query->num_rows();
@@ -58,7 +58,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun"
+            FROM dataakun"
         );
 
         return $query->num_rows();
@@ -68,7 +68,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun
+            FROM dataakun
             WHERE nik = $nik"
         );
 
@@ -79,7 +79,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun
+            FROM dataakun
             WHERE id_akun = $id"
         );
 
@@ -90,7 +90,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAkun
+            FROM dataakun
             WHERE nik = $nik"
         );
 
@@ -101,7 +101,7 @@ class DataAkun extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataAnak
+            FROM dataanak
             WHERE nik_wali = $nik"
         );
 
@@ -137,12 +137,12 @@ class DataAkun extends CI_Model
             'pendidikan_terakhir' => $pendidikan_terakhir,
             'image' => 'default.jpg'
         ];
-        $this->db->insert('dataAkun', $data_akun);
+        $this->db->insert('dataakun', $data_akun);
     }
 
     public function hapusData($id)
     {
-        $this->db->delete('dataAkun', ['id_akun' => $id]);
+        $this->db->delete('dataakun', ['id_akun' => $id]);
     }
 
     public function ubahData($id)
@@ -172,7 +172,7 @@ class DataAkun extends CI_Model
             'role' => $role
         ];
         $this->db->where('id_akun', $id);
-        $this->db->update('dataAkun', $data_akun);
+        $this->db->update('dataakun', $data_akun);
     }
 
     public function doLogin()
@@ -182,7 +182,7 @@ class DataAkun extends CI_Model
         // cari user berdasarkan email dan username
         $this->db->where('nama', $post["username"]);
         $this->db->where('password', $post["password"]);
-        $user = $this->db->get("dataAkun")->row();
+        $user = $this->db->get("dataakun")->row();
         // jika user terdaftar
         if ($user) {
             // periksa password-nya
@@ -210,7 +210,7 @@ class DataAkun extends CI_Model
         $this->db->where('kode_posyandu', $post["kode_posyandu"]);
         $this->db->where('password', $post["password"]);
         $this->db->where('role', $post["role"]);
-        $user = $this->db->get("dataAkun")->row();
+        $user = $this->db->get("dataakun")->row();
         // jika user terdaftar
         if ($user) {
             // periksa password-nya

@@ -8,7 +8,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataImunisasi WHERE kode_posyandu='$spesifik_kode' ORDER BY tanggal_imunisasi ASC"
+            FROM dataimunisasi WHERE kode_posyandu='$spesifik_kode' ORDER BY tanggal_imunisasi ASC"
         );
 
         return $query->result_array();
@@ -18,7 +18,7 @@ class DataImunisasi extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->from('dataImunisasi');
+        $this->db->from('dataimunisasi');
         $this->db->where('kode_posyandu', $spesifik_kode);
         $this->db->where('jenis_imunisasi', $getKategori);
         $this->db->where('tanggal_imunisasi >=', $tanggal_awal);
@@ -32,7 +32,7 @@ class DataImunisasi extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->from('dataImunisasi');
+        $this->db->from('dataimunisasi');
         $this->db->where('kode_posyandu', $spesifik_kode);
         $this->db->where('tanggal_imunisasi >=', $tanggal_awal);
         $this->db->where('tanggal_imunisasi <=', $tanggal_akhir);
@@ -45,7 +45,7 @@ class DataImunisasi extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->from('dataImunisasi');
+        $this->db->from('dataimunisasi');
         $this->db->where('kode_posyandu', $spesifik_kode);
         $this->db->where('jenis_imunisasi', $getFilter);
         $query = $this->db->get();
@@ -57,7 +57,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataImunisasi WHERE id_kms='$idKms' ORDER BY id_imunisasi DESC"
+            FROM dataimunisasi WHERE id_kms='$idKms' ORDER BY id_imunisasi DESC"
         );
 
         return $query->result_array();
@@ -71,7 +71,7 @@ class DataImunisasi extends CI_Model
         $this->db->from('datakms');
         $this->db->join('dataposyandu', 'datakms.kode_posyandu=dataposyandu.kode_posyandu');
         $this->db->join('dataanak', 'datakms.id_kms=dataanak.id_kms');
-        $this->db->where('dataKMS.id_kms', $spesifikIdkms);
+        $this->db->where('datakms.id_kms', $spesifikIdkms);
         $query =  $this->db->get();
 
         return $query->result_array();
@@ -82,7 +82,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataImunisasi WHERE tanggal_imunisasi BETWEEN '$dari_tanggal' AND '$sampai_tanggal'"
+            FROM dataimunisasi WHERE tanggal_imunisasi BETWEEN '$dari_tanggal' AND '$sampai_tanggal'"
         );
 
         return $query->result_array();
@@ -93,13 +93,13 @@ class DataImunisasi extends CI_Model
         if ($spesifik_kode != null) {
             $query = $this->db->query(
                 "SELECT *
-                FROM dataImunisasi
+                FROM dataimunisasi
                 WHERE status = 1 AND kode_posyandu = '$spesifik_kode'"
             );
         } else {
             $query = $this->db->query(
                 "SELECT *
-            FROM dataImunisasi
+            FROM dataimunisasi
             WHERE status = 1"
             );
         }
@@ -111,7 +111,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT *
-            FROM dataImunisasi
+            FROM dataimunisasi
             WHERE status = 1 AND nik = $nik"
         );
 
@@ -122,7 +122,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataImunisasi
+            FROM dataimunisasi
             WHERE nik = $nik"
         );
 
@@ -133,7 +133,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT * 
-            FROM dataImunisasi
+            FROM dataimunisasi
             WHERE id_imunisasi = $id"
         );
 
@@ -144,7 +144,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT bulan, COUNT(jenis_imunisasi) as jumlah_imunisasi
-            FROM dataImunisasi WHERE kode_posyandu = '$spesifik_kode' AND bulan != '' GROUP BY bulan ORDER BY tanggal_imunisasi ASC"
+            FROM dataimunisasi WHERE kode_posyandu = '$spesifik_kode' AND bulan != '' GROUP BY bulan ORDER BY tanggal_imunisasi ASC"
         );
 
         return $query->result_array();
@@ -164,7 +164,7 @@ class DataImunisasi extends CI_Model
     {
 
         $this->db->select('*');
-        $this->db->from('dataImunisasi');
+        $this->db->from('dataimunisasi');
         $this->db->where('kode_posyandu', $spesifik_kode);
         $this->db->where('status', 1);
         $query =  $this->db->get();
@@ -176,7 +176,7 @@ class DataImunisasi extends CI_Model
     {
         $query = $this->db->query(
             "SELECT bulan, COUNT(status) as jumlah_status
-            FROM dataImunisasi WHERE status = 1 GROUP BY bulan ORDER BY tanggal_imunisasi ASC"
+            FROM dataimunisasi WHERE status = 1 GROUP BY bulan ORDER BY tanggal_imunisasi ASC"
         );
 
         return $query->result_array();
@@ -185,7 +185,7 @@ class DataImunisasi extends CI_Model
     public function countBelumImunisasi($spesifik_kode)
     {
         $this->db->select('*');
-        $this->db->from('dataImunisasi');
+        $this->db->from('dataimunisasi');
         $this->db->where('kode_posyandu', $spesifik_kode);
         $this->db->where('status', 0);
         $query =  $this->db->get();
@@ -214,7 +214,7 @@ class DataImunisasi extends CI_Model
                 'jenis_imunisasi' => $jenis_imunisasi[$i],
                 'status' => $status
             ];
-            $this->db->insert('dataImunisasi', $data_anak);
+            $this->db->insert('dataimunisasi', $data_anak);
         }
     }
 
@@ -227,7 +227,11 @@ class DataImunisasi extends CI_Model
         $bulan_imunisasi = date('F', strtotime($this->input->post('tanggal_imunisasi')));
         $jenis_imunisasi = $this->input->post('jenis_imunisasi');
         $status = $this->input->post('status');
+
+        $anak = $this->db->get_where('dataanak', ['nik' => $getNik])->row();
+
         $data_anak = [
+            'id_kms' => $anak->id_kms,
             'nik' => $getNik,
             'kode_posyandu' => $kode_posyandu,
             'nama' => $getNama,
@@ -237,12 +241,12 @@ class DataImunisasi extends CI_Model
             'jenis_imunisasi' => $jenis_imunisasi,
             'status' => $status
         ];
-        $this->db->insert('dataImunisasi', $data_anak);
+        $this->db->insert('dataimunisasi', $data_anak);
     }
 
     public function hapusData($id)
     {
-        $this->db->delete('dataImunisasi', ['id_imunisasi' => $id]);
+        $this->db->delete('dataimunisasi', ['id_imunisasi' => $id]);
     }
 
     public function ubahData($id)
@@ -262,6 +266,6 @@ class DataImunisasi extends CI_Model
             'status' => $status
         ];
         $this->db->where('id_imunisasi', $id);
-        $this->db->update('dataImunisasi', $data_imunisasi);
+        $this->db->update('dataimunisasi', $data_imunisasi);
     }
 }

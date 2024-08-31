@@ -79,7 +79,10 @@
                   </ul>
                 </li> -->
                 <li class="has-children">
-                  <a href="#"><?= $user['nama']; ?></a>
+                  <?php
+                  $ibu = $this->db->get_where('dataibu', ['nik' => $this->session->userdata('nik')])->row();
+                  ?>
+                  <a href="#"><?= $ibu->nama; ?></a>
                   <ul class="dropdown">
                     <li><a href="<?= base_url('user/profil') ?>">Profil</a></li>
                     <li><a href="<?= base_url() ?>auth/logout_anak" onclick="return confirm('yakin ingin keluar ?')">Logout</a></li>

@@ -85,7 +85,7 @@
                                     Tinggi Badan
                                 </th>
                                 <th>
-                                    Optimal
+                                    Berat Badan Optimal & Prediksi
                                 </th>
                                 <th>
                                     Status Gizi
@@ -108,7 +108,7 @@
                                         <td><?= $value['umur'] ?> Bulan</td>
                                         <td><?= $value['berat_badan'] ?> kg</td>
                                         <td><?= $value['tinggi_badan'] ?> cm</td>
-                                        <td><?= $value['bb_optimal'] ?> kg dan <?= $value['tb_optimal'] ?> cm</td>
+                                        <td><?= $value['bb_optimal'] ?> kg dan <?= $value['bb_prediksi'] ?> kg</td>
                                         <td><?= $value['status_gizi'] ?></td>
                                         <td class>
                                             <!-- <?php if ($value['status_gizi'] != 'Berat badan normal') { ?>
@@ -160,7 +160,7 @@
                                         <label class="bmd-label-floating">ID KMS</label>
                                         <select class="form-control" name="id_kms" required>
                                             <?php foreach ($dataAnak as $value) : ?>
-                                                <option value="<?= $value['id_kms'] ?>"><?= $value['id_kms'] ?>--<?= $value['nama'] ?></option>
+                                                <option value="<?= $value['nik'] ?>"><?= $value['id_kms'] ?>--<?= $value['nik'] ?>--<?= $value['nama'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

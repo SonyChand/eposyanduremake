@@ -15,7 +15,7 @@
             </tr>
             <tr>
               <th width="250px">Id kms</th>
-              <th width="750px">:&nbsp;<?= $getUser['id_kms']; ?></th>
+              <th width="750px">:&nbsp;<?= $user['id_kms']; ?></th>
             </tr>
             <tr>
               <th width="250px">Kode Posyandu</th>
@@ -51,7 +51,7 @@
                         </tr> -->
             <tr>
               <th width="250px">Nama Wali</th>
-              <th width="750px">:&nbsp;<?= $getUser['nama_wali']; ?></th>
+              <th width="750px">:&nbsp;<?= $getUser['nama']; ?></th>
             </tr>
 
           </table><br>

@@ -17,9 +17,9 @@ class User extends CI_Controller
 
     public function index()
     {
-        // $getKode = $this->db->get_where('dataAnak', ['nik' => $this->session->userdata('nik')])->row_array();
+        // $getKode = $this->db->get_where('dataanak', ['nik' => $this->session->userdata('nik')])->row_array();
         // $spesifik_kode = $getKode['kode_posyandu'];
-        $data['user']   = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user']   = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['get_posyandu'] = $this->DataPosyandu->printPosyandu();
 
@@ -60,9 +60,9 @@ class User extends CI_Controller
     public function profil()
     {
 
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
-        $data['getUser'] = $this->db->get_where('dataAnak', ['nik' => $this->session->userdata('nik')])->row_array();
+        $data['getUser'] = $this->db->get_where('dataibu', ['nik' => $this->session->userdata('nik')])->row_array();
         // $spesifik_kode = $getKode['kode_posyandu'];
 
         $this->load->view('User/template/header', $data);
@@ -72,7 +72,7 @@ class User extends CI_Controller
 
     public function pengetahuan_seputar_anak()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
         $this->load->view('User/pengetahuan_seputar_anak');
@@ -80,7 +80,7 @@ class User extends CI_Controller
     }
     public function perkembangan_anak_balita()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
         $this->load->view('User/perkembangan_anak_balita');
@@ -88,7 +88,7 @@ class User extends CI_Controller
     }
     public function pendidikan_stimulasi()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
         $this->load->view('User/pendidikan_stimulasi');
@@ -96,7 +96,7 @@ class User extends CI_Controller
     }
     public function perawatan_seharihari()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
         $this->load->view('User/perawatan_sehari_hari');
@@ -105,7 +105,7 @@ class User extends CI_Controller
 
     public function mpasi()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
         $this->load->view('User/MP_ASI');
@@ -114,7 +114,7 @@ class User extends CI_Controller
 
     public function artikelPosyandu()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['artikel'] = $this->db->query("SELECT * FROM artikel ORDER BY id_artikel DESC")->result_array();
         $this->load->view('User/template/header', $data);
@@ -129,7 +129,7 @@ class User extends CI_Controller
         $this->db->set('view', $view);
         $this->db->where('id_artikel', $id_artikel);
         $this->db->update('artikel');
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['artikel_artikel'] = $this->db->get('artikel')->result_array();
         $this->load->view('User/template/header', $data);
@@ -138,7 +138,7 @@ class User extends CI_Controller
     }
     public function pengetahuan()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['pengetahuan'] = $this->db->query("SELECT * FROM pengetahuan ORDER BY id_pengetahuan DESC ")->result_array();
         $data['kategori'] = $this->db->get('pengetahuan_kategori')->result_array();
@@ -148,7 +148,7 @@ class User extends CI_Controller
     }
     public function pengetahuanId($id_kategori)
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['pengetahuan'] = $this->db->get_where('pengetahuan', ['id_kategori' => $id_kategori])->result_array();
         $data['kategori'] = $this->db->get('pengetahuan_kategori')->result_array();
@@ -160,7 +160,7 @@ class User extends CI_Controller
     public function pengetahuanDetail($id_pengetahuan)
     {
         $data['pengetahuan'] = $this->db->get_where('pengetahuan', ['id_pengetahuan' => $id_pengetahuan])->row_array();
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['pengetahuan_pengetahuan'] = $this->db->get('pengetahuan')->result_array();
         $this->load->view('User/template/header', $data);
@@ -169,7 +169,7 @@ class User extends CI_Controller
     }
     public function kegiatanPosyandu()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $kode = $data['user']['kode_posyandu'];
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['kegiatan'] = $this->db->query(" SELECT * FROM datakegiatan WHERE kode_posyandu = '$kode' ORDER BY id_kegiatan DESC")->result_array();
@@ -180,7 +180,7 @@ class User extends CI_Controller
 
     public function kegiatanDetail($id_kegiatan)
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['kegiatan'] = $this->db->get_where('datakegiatan', ['kode_posyandu' => $data['user']['kode_posyandu'], 'id_kegiatan' => $id_kegiatan])->row_array();
         $data['kegiatan_kegiatan'] = $this->db->get_where('datakegiatan', ['kode_posyandu' => $data['user']['kode_posyandu']])->result_array();
@@ -190,7 +190,7 @@ class User extends CI_Controller
     }
     public function jadwalPosyandu()
     {
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['jadwal'] = $this->db->get_where('jadwal_posyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->result_array();
         $this->load->view('User/template/header', $data);
@@ -210,7 +210,7 @@ class User extends CI_Controller
 
         $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikNik);
         $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
 
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
@@ -227,7 +227,7 @@ class User extends CI_Controller
 
         $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikNik);
         $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['artikel'] = $this->db->query("SELECT * FROM artikel WHERE id_kategori = '$id_kategori'")->result_array();
         // $data['pengetahuan'] = $this->db->query("SELECT * FROM pengetahuan AS a JOIN pengetahuan_kategori AS pk ON a.id_kategori = pk.id_kategori WHERE a.id_kategori = $kategori")->result_array();
 
@@ -248,9 +248,12 @@ class User extends CI_Controller
 
         $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikIdkms);
         $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
 
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
+
+        // var_dump($data['getImunisasiUser']);
+        // die;
         $this->load->view('User/template/header', $data);
         $this->load->view('User/riwayatImunisasi', $data);
         $this->load->view('User/template/footer');
@@ -268,7 +271,7 @@ class User extends CI_Controller
 
         // $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikNik);
         // $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
 
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $this->load->view('User/template/header', $data);
@@ -289,7 +292,7 @@ class User extends CI_Controller
 
         $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikIdkms);
         $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
-        $data['user'] = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user'] = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
 
         $data['posyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
 
@@ -330,7 +333,7 @@ class User extends CI_Controller
         $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
         $data['judul']   = 'Laporan';
         $data['gambar']        = FCPATH . 'assets/img/logo22.png';
-        $data['user']    = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user']    = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['dataposyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
 
         $this->load->view('user/cetak_perkembangan', $data);
@@ -357,15 +360,14 @@ class User extends CI_Controller
 
         $x = $this->DataKMS->get_dataUser($spesifikIdkms)->result();
         $data['avgKMS'] = json_encode($x);
-        $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikNik);
+        $data['getImunisasiUser'] = $this->DataImunisasi->getImunisasiUser($spesifikIdkms);
         $data['getKmsUser'] = $this->DataImunisasi->getKmsUser($spesifikIdkms);
         $data['judul']   = 'Laporan';
         $data['gambar']        = FCPATH . 'assets/img/logo22.png';
-        $data['user']    = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user']    = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['dataposyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
 
         $this->load->view('user/cetak_imunisasi', $data);
-
         $paper_size         = 'A4';
         $orientation        = 'landscape';
         $html               = $this->output->get_output();
@@ -384,7 +386,7 @@ class User extends CI_Controller
 
         $data['judul']   = 'Laporan';
         $data['gambar']        = FCPATH . 'assets/img/logo22.png';
-        $data['user']    = $this->db->get_where('dataAnak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
+        $data['user']    = $this->db->get_where('dataanak', ['nik_wali' => $this->session->userdata('nik')])->row_array();
         $data['dataposyandu'] = $this->db->get_where('dataposyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->row_array();
         $data['jadwal_posyandu'] = $this->db->get_where('jadwal_posyandu', ['kode_posyandu' => $data['user']['kode_posyandu']])->result_array();
 
