@@ -85,17 +85,6 @@ class DataKMS extends CI_Model
         return $query->result_array();
     }
 
-    // public function PintAVGKMS()
-    // {
-    //     $query = $this->db->query(
-    //         "SELECT bulan,CAST(AVG(tinggi_badan) AS INT) as avg_tinggi,CAST(AVG(berat_badan) AS INT) as avg_berat 
-    //         FROM dataKMS 
-    //         GROUP BY bulan 
-    //         ORDER BY tanggal_periksa"
-    //     );
-
-    //     return $query->result();
-    // }
 
     public function printAVGKMS()
     {
