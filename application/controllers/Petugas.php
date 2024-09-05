@@ -778,7 +778,9 @@ class Petugas extends CI_Controller
 	}
 	public function jadwal_posyandu()
 	{
+
 		$getKode = $this->db->get_where('dataakun', ['nik' => $this->session->userdata('nik')])->row_array();
+
 
 		$spesifik_kode = $getKode['kode_posyandu'];
 		$data['user'] = $this->db->get_where('dataakun', ['nik' => $this->session->userdata('nik')])->row_array();
@@ -796,8 +798,12 @@ class Petugas extends CI_Controller
 
 	public function tambah_jadwal_posyandu()
 	{
+		$getKode = $this->db->get_where('dataakun', ['nik' => $this->session->userdata('nik')])->row_array();
+
+
+		$spesifik_kode = $getKode['kode_posyandu'];
 		$data = [
-			'kode_posyandu'     => $this->input->post('kode_posyandu'),
+			'kode_posyandu'     => $spesifik_kode,
 			'hari'              => $this->input->post('hari'),
 			'jam_buka'          => $this->input->post('jam_buka'),
 			'jam_tutup'         => $this->input->post('jam_tutup')
